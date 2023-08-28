@@ -1,0 +1,139 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <body class="container">
+
+        <!-- POUR LES NOTIFICATIONS -->
+        <div class="row" style="text-align:center; margin-left: auto; margin-right: auto;">
+            {% for flash in app.flashes('achat') %}
+                <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- ####################################################################################################################### -->
+
+        <div class="row" style="background-color: white; margin-left: auto; margin-right: auto; padding-top:25px;">
+            {% if panierlist.achats|length > 0 %}
+                <article class="col-8">
+                    <form action="{{ path('panier_update') }}" method="POST">
+                        {% for key, achat in panierlist.achats %}
+                            <article class="row article" style="background-color: white; border-style: solid; border-width: 2px; border-color: black; border-radius: 25px; margin-bottom: 10px;">
+                                
+                                <div class="col-2">
+                                    <img class="mx-auto" src="{{asset_if(achat.produit.imagePath, 'images/produits/non-disponible.svg')}}" alt="image" style="height: 200px;">
+                                </div>
+
+                                <div class="col-3" style="margin-top: auto; margin-bottom: auto;">
+                                    <span class="txt-achat">{{achat.produit.nom}}</span>
+                                </div>
+
+                                <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                                     <span class="txt-achat">Prix Unitaire <br><hr>{{achat.prixAchat|number_format(2)}}$</span>
+                                </div>
+
+                                <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                                    <span class="txt-achat">Quantité <br><hr><input name="{{ 'txtQte[' ~ key ~ ']' }}" 
+                                    value="{{ achat.quantite }}" type="number" placeholder="{{achat.quantite}}" style="text-align: center; width:150px" required></span>
+                                </div>
+
+                                <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                                    <span class="txt-achat">Total <br> <hr>{{(achat.prixAchat|number_format(2) * achat.quantite)|number_format(2)}}$</span>
+                                </div>
+
+                                <div class="col-1" style="margin-top: auto; margin-bottom: auto;">
+                                    <a href="{{ path('panier_delete', { idProduit:achat.produit.idProduit }) }}" data-toggle="tooltip" data-placement="top" title="Supprimer cet article">
+                                        <i class="fa-sharp fa-solid fa-trash fa-1x" style="color: red;"></i>
+                                    </a>
+                                </div>
+
+                            </article>
+                        {% endfor %}
+
+                        <button class="btn btn-panier" name="action" value="rafraichir" style="color: green;" data-toggle="tooltip" data-placement="top" title="Mettre à jour le panier">
+                            <i class="fa-solid fa-arrows-rotate fa-2x"></i>
+                        </button>
+
+                        <button class="btn" name="action" value="vider" style="color: red;" data-toggle="tooltip" data-placement="top" title="Vider le panier">
+                            <i class="fa-sharp fa-solid fa-dumpster fa-2x"></i>
+                        </button>
+
+                    </form>
+                </article>
+            {% else %}
+
+                <div class="col-8" style="margin: auto; background-color: white; text-align: center;">
+                    <i class="fa-solid fa-dice-d20 fa-2x"></i> <span style="font-size: 40px;"> Votre panier est vide </span><i class="fa-solid fa-dice-d20 fa-2x"></i>
+                </div>
+
+            {% endif %}
+
+            <!-- ####################################################################################################################### -->
+
+            <article class="col-3" style="padding-left:150px">
+                <div class="row" style="margin-left: auto; margin-right: auto; border-style: solid; border-width: 2px; border-color: black; border-radius: 10px; margin-bottom: 10px;">
+                    <article>
+                         <span class="txt-sommaire">Sous-total: {{sousTotal|number_format(2)}}$</span>
+                    </article>
+                    
+                    <hr>
+
+                    <article>
+                        {% if qteTotal > 0 %}
+                             <span class="txt-sommaire">Livraison: {{fraisLivraison|number_format(2)}}$</span>
+                        {% else %}
+                             <span class="txt-sommaire">Livraison: 0.00$</span>
+                        {% endif %}
+                        
+                    </article>
+
+                    <hr>
+
+                    <article>
+                         <span class="txt-sommaire">TPS: {{(sousTotal * TPS / 100)|number_format(2)}}$</span>
+                    </article>
+
+                    <hr>
+
+                    <article>
+                        <span class="txt-sommaire">TVQ: {{(sousTotal * TVQ / 100)|number_format(2)}}$</span>
+                    </article>
+
+                    <hr>
+
+                    <article>
+
+                        {% if qteTotal > 0 %}
+                             <span class="txt-sommaire">Total: {{( (sousTotal) + (sousTotal * TVQ / 100) + (sousTotal * TPS / 100) + (fraisLivraison))|number_format(2)}}$</span>
+                        {% else %}
+                            {% set sousTotal = 0 %}
+                            <span class="txt-sommaire">Total: {{sousTotal|number_format(2)}}$</span>
+                        {% endif %}
+
+                    </article>
+
+                    <hr>
+
+                    <article style="vertical-align: middle; margin-bottom:5px">
+                        <a href="{{ path('app_revue') }}">
+                            <button class="btn btn-success" name="action" value="vider" data-toggle="tooltip" data-placement="top" title="Revue">
+                                <i class="fa-solid fa-truck fa-2x"></i>
+                            </button>
+                        </a>
+                    </article >
+                    
+
+                </div>
+            </article>
+            
+        </div>
+    </body>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/panier.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://kit.fontawesome.com/37c5a17803.js" crossorigin="anonymous"></script>
+{% endblock %}

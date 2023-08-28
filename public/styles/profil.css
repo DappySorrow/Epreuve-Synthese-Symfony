@@ -1,0 +1,51 @@
+body {
+    background-image: url("../images/profil/profil.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+.center {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.nom-input {
+    width: 220px;
+    margin-right: 5px;
+}
+
+.input-inscription {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: 380px;
+}
+
+.div-inscription {
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-inscription {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.div-formulaire {
+    margin-bottom: 15px;
+}
+
+.deconnection {
+    color: black;
+    text-decoration: underline;
+}

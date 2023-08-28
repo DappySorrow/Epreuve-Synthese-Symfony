@@ -1,0 +1,136 @@
+{% extends 'core/base.html.twig' %}
+{% form_theme formulaire 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto">
+
+        {# POUR LES NOTIFICATIONS #}
+        <div class="row" style="text-align:center; margin-left: auto; margin-right: auto; margin-top:-45px; margin-bottom:45px;">
+            {% for flash in app.flashes('notification-commande-detail') %}
+                <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+            {% endfor %}
+        </div>
+
+        {# Menu #}
+        <div class="col-2 mx-auto">
+            <article>
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-primary btn-admin-med">Catégories</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-primary btn-admin-med">Nouveau Produit</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-primary btn-admin-med">Produits</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-light btn-admin-med">Commandes</button>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-10 mx-auto">
+
+            {# Etat #}
+            <div class="row mx-auto" style="background-color: white; width:950px; margin-bottom:15px">
+                <h4 class="col-6 center">État de la préparation:</h4>
+                
+                {{ form_start(formulaire)}}
+                    {{ form_row(formulaire.etat) }}
+                {{ form_end(formulaire) }}
+                
+            </div>
+
+            {# Infos #}
+            <div class="row mx-auto" style="background-color: white; width:950px">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">No. Commande: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">{{commande.idCommande}}</h4>
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">État de la commande: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">{{commande.etat}}</h4>
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">Date de la commande: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">{{commande.dateCommande|date}}</h4>
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">Date de la livraison: </h4>
+                    {% if commande.getDateLivraison() == null %}
+                        <h4 class="card-text text-center col-6" style="color: black;">N/A</h4>
+                    {% else %}
+                        <h4 class="card-text text-center col-6" style="color: black;">{{commande.dateLivraison|date}}</h4>
+                    {% endif %}
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">Informations comptables: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">
+                        <span>Sous-Total: </span>{{commande.calculerSousTotal()|number_format(2)}}$
+                        <br>
+                        <span>Frais De Livraison: </span> {{commande.fraisLivraison()|number_format(2)}}$
+                        <br>
+                        <span>Grand Total: </span> {{commande.calculerPrixTotal()|number_format(2)}}$
+                    </h4>
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">Adresse de livraison: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">
+                        {{client.adresse}}
+                        <br>
+                        {{client.ville}} {{client.province}} {{client.codePostal}}
+                    </h4>
+                </article>
+                <hr style="color: black;">
+                <article class="row">
+                    <h4 class="card-title text-center col-6" style="color: black;">Items de la commande: </h4>
+                    <h4 class="card-text text-center col-6" style="color: black;">
+                        {% for achat in commande.getAchats() %}
+                            <a class="click-modal link-primary" href="{{ path('produit_modal', { idProduit:achat.getProduit().idProduit })}}">
+                                {{achat.getProduit().getNom()}}
+                            </a>
+                            x{{achat.getQuantite()}}
+                            <br>
+                        {% endfor %}
+                    </h4>
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Zone pour le modal-->
+	<div class="modal fade" tabindex="-1" id="produit-modal">
+		<div class="modal-dialog">
+			<div id="produit-modal-content" class="modal-content">
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/catalogue.css') }}">
+<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('scripts/modal.produit.js') }}"></script>
+    <script src="{{ asset('scripts/selectCommandeDetails.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

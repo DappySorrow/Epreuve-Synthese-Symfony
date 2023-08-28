@@ -1,0 +1,56 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    {# POUR LES NOTIFICATIONS #}
+    <div class="row" style="text-align:center; margin-left: auto; margin-right: auto; margin-top:-45px; margin-bottom:45px;">
+        {% for flash in app.flashes('notifications_commandes') %}
+            <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="row mx-auto" style="margin-top:-45px;">
+        {% if commandes|length > 0 %}
+            {% for commande in commandes %}
+                <div class="col-2 card mx-2 my-2 mx-auto" style="width: 500px;">
+                    <a href="{{ path('app_detail_commande', { idCommande:commande.idCommande })}}">
+                        <div class="card-body">
+                            <div class="container">
+
+                                <article class="row">
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">No. Commande:</h4>
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">{{commande.idCommande}}</h4>
+                                </article>
+                                <hr style="color: black;">
+                                <article class="row">
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">Date de la commande: </h4>
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">{{commande.dateCommande|date}}</h4>
+                                </article>
+                                <hr style="color: black;">
+                                <article class="row">
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">Total de la commande: </h4>
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">{{commande.calculerPrixTotal()|number_format(2)}}$</h4>
+                                </article>
+                                <hr style="color: black;">
+                                <article class="row">
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">État de la commande: </h4>
+                                    <h4 class="card-title text-center col-6 mx-auto" style="color: black;">{{commande.etat}}</h4>
+                                </article>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row mx-auto" style="text-align: center; background-color:white">
+                <h4 style="color:black; margin-left: auto; margin-right: auto;" >Aucune commande trouvée</h4>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+    
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/commande.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}

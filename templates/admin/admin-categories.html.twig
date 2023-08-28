@@ -1,0 +1,73 @@
+{% extends 'core/base.html.twig' %}
+{% form_theme formulaire 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto">
+
+        {# POUR LES NOTIFICATIONS #}
+        <div class="row" style="text-align:center; margin-left: auto; margin-right: auto; margin-top:-45px; margin-bottom:45px;">
+            {% for flash in app.flashes('notification-categorie') %}
+                <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+            {% endfor %}
+        </div>
+
+        {# Menu #}
+        <div class="col-2 mx-auto">
+            <article>
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-info btn-admin-med">Catégories</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-primary btn-admin-med">Nouveau Produit</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-primary btn-admin-med">Produits</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-primary btn-admin-med">Commandes</button>
+                </a>
+            </article>
+        </div>
+
+        {# Categories #}
+        <div class="col-10 mx-auto" style="background-color: #a8f0c3; border-radius: 30px; padding-top:15px;">
+
+            {{ form_start(formulaire, {'attr': {'class': 'needs-validation-register', 'novalidate': 'novalidate' }}) }}
+                <ul class="categories" 
+                    data-index="{{ formulaire.categories|length > 0 ? formulaire.categories|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(formulaire.categories.vars.prototype)|e('html_attr') }}"
+                    style="list-style-type: none;">
+                    {% for categorie in formulaire.categories %}
+                        <li>{{ form_row(categorie.categorie) }}</li>
+                    {% endfor %}
+                </ul>
+
+                <article>
+                    {{ form_row(formulaire.btnAdd) }}
+                    {{ form_row(formulaire.btnSave) }}
+                </article>
+            {{ form_end(formulaire) }}
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script defer src="{{ asset('scripts/validateur.js')}}"></script>
+    <script defer src="{{ asset('scripts/categories.js') }}"></script>
+{% endblock %}

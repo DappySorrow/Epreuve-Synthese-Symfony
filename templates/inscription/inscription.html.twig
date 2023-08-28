@@ -1,0 +1,97 @@
+{% extends 'core/base.html.twig' %}
+{% form_theme formulaire 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+	<div class="row center div-formulaire" style="background-color: #fcffd4; width:550px; border-radius: 30px; padding-top:15px; padding-bottom:10px;">
+
+		{# Le formulaire #}
+		{{ form_start(formulaire, {'attr': {'class': 'needs-validation-register', 'novalidate': 'novalidate' }}) }}
+		
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Courriel:</span>
+				</div>
+				{{ form_row(formulaire.courriel) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Nom:</span>
+				</div>
+				{{ form_row(formulaire.nom) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Prenom:</span>
+				</div>
+				{{ form_row(formulaire.prenom) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Mot De Passe:</span>
+				</div>
+				{{ form_row(formulaire.motDePasse.first) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Confirmation:</span>
+				</div>
+				{{ form_row(formulaire.motDePasse.second) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Adresse:</span>
+				</div>
+				{{ form_row(formulaire.adresse) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Ville:</span>
+				</div>
+				{{ form_row(formulaire.ville) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Code Postal:</span>
+				</div>
+				{{ form_row(formulaire.codePostal) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<label class="input-group-text center">Province</label>
+				</div>
+				{{ form_row(formulaire.province) }}
+			</div>
+
+			<div class="input-group div-inscription center">
+				<div class="input-group-prepend nom-input">
+					<span class="input-group-text center">Telephone:</span>
+				</div>
+				{{ form_row(formulaire.telephone) }}
+			</div>
+			
+			<div class="btn-inscription">
+				{{ form_row(formulaire.create) }}
+			</div>
+
+		{{ form_end(formulaire) }}
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/inscription.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+	<script defer src="{{ asset('scripts/register.js')}}"></script>
+{% endblock %}

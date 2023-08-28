@@ -1,0 +1,63 @@
+body {
+    background-image: url("../images/background-main.png");
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+.img-produit {
+    width: 250px;
+    height: 250px;
+}
+
+.card-produit {
+    width: 367px;
+    height: 470px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card-link {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card-hover:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card-title {
+    height: 60px;
+}
+
+.categorie:hover,
+.produit-titre:hover {
+    color: orange;
+}
+
+/* ------------------------------------ */
+
+.icon-ajout-panier {
+    filter: brightness(0) invert(1);
+    margin: auto;
+}
+
+.ajout-panier {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 40px;
+}
+
+.ajout-panier:hover {
+    background-color: orange;
+    border-color: orange;
+}
+
+/* ------------------------------------ */
+
+.modal-body {
+    background-image: url('../images/modal-bg.jpg');
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,70 @@
+body {
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+header {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+a {
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.logo {
+    color: white;
+    font-size: 45px;
+    text-decoration: none;
+    vertical-align: middle;
+    font-family: 'Julee', cursive;
+}
+
+.logo-color {
+    fill: white;
+}
+
+.logo-hover:hover>span {
+    color: red;
+}
+
+.logo-hover:hover>svg {
+    fill: red;
+}
+
+article {
+    text-align: center;
+}
+
+.icon-nav:hover {
+    fill: orange;
+}
+
+.svg-icon-nav {
+    fill: white;
+    height: 80px;
+    width: 80px;
+}
+
+/* ------------------------------- */
+
+.btn-recherche {
+    color: white;
+    margin: auto;
+}
+
+.btn-recherche:hover {
+    color: white;
+    margin: auto;
+    background-color: orange;
+    border-color: orange;
+}
+
+
+/* ------------------------------- */

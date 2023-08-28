@@ -1,0 +1,46 @@
+body {
+    background-image: url("../images/inscription/inscription.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+.div-inscription {
+    margin-bottom: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-inscription {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: 380px;
+    vertical-align: middle;
+    display: flex;
+}
+
+.btn-inscription {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.btn-size {
+    width: 500px
+}
+
+.nom-input {
+    width: 120px;
+}
+
+.center {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}

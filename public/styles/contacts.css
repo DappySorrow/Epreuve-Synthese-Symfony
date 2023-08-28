@@ -1,0 +1,36 @@
+body {
+    background-image: url("../images/background-main.png");
+    background-size: 1920px 1080px;
+    background-repeat: repeat;
+    width: 1920px;
+}
+
+.card-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 550px;
+}
+
+.card-info:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.svg-icon {
+    display: block;
+    margin: auto;
+    fill: white;
+    height: 80px;
+    width: 80px;
+}

@@ -1,0 +1,28 @@
+body {
+    background-image: url("../images/connexion/connexion.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+.input-connexion {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    text-align: center;
+}
+
+.btn-connexion {
+    margin: 5px;
+    width: 100px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}

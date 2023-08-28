@@ -1,0 +1,91 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto" style="background-color: white;">
+        <article class="col-12">
+            <div class="row center">
+                <h1 style="text-align: center;">Informations de la livraison</h1>
+            </div>
+
+            <div class="row">
+                <span class="col-12 center" style="text-align: center;">{{client.prenom}} {{client.nom}}</span>
+                <span class="col-12 center" style="text-align: center;">{{client.adresse}}</span>
+                <span class="col-12 center" style="text-align: center;">{{client.ville}} {{client.province}} {{client.codePostal}}</span>
+            </div>
+        </article>
+
+        
+    </div>
+
+    <div class="row mx-auto" style="background-color: white; margin-top:10px;">
+        <div class="row center">
+            <h1 style="text-align: center;">Revue de la commande</h1>
+        </div>
+        
+        <article class="col-9">
+            <div class="row">
+                {% for key, achat in panierlist.achats %}
+                    <div class="col-2">
+                        <img class="mx-auto" src="{{asset_if(achat.produit.imagePath, 'images/produits/non-disponible.svg')}}" alt="image" style="height: 200px;">
+                    </div>
+
+                    <div class="col-3" style="margin-top: auto; margin-bottom: auto;">
+                        <span class="mx-auto">{{achat.produit.nom}}</span>
+                    </div>
+
+                    <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                        <span class="mx-auto">Prix Unitaire <br><hr>{{achat.prixAchat|number_format(2)}}$</span>
+                    </div>
+
+                    <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                        <span class="mx-auto">Quantité <br><hr>{{ achat.quantite }}</span>
+                    </div>
+
+                    <div class="col-2" style="margin-top: auto; margin-bottom: auto;">
+                        <span class="mx-auto center">Total</span>
+                        <br>  
+                        <hr>
+                        {{achat.prixTotal|number_format(2)}}$
+                    </div>
+                {% endfor %}
+            </div>
+        </article>  
+
+        <article class="col-3 center">
+            <article>
+                <span>Sous-Total: {{panierlist.calculerPanier|number_format(2)}}$</span>
+            </article>
+
+            <article>
+                <span>Livraison: {{fraisLivraison|number_format(2)}}$</span>
+            </article>
+
+            <article>
+                <span>TPS: {{panierlist.calculerTPS|number_format(2)}}$</span>
+            </article>
+
+            <article>
+                <span>TVQ: {{panierlist.calculerTVQ|number_format(2)}}$</span>
+            </article>
+
+            <article>
+                <span>Grand-Total: {{panierlist.calculerGrandTotal|number_format(2)}}$</span>
+            </article>
+
+            <a href="{{ path('app_stripe') }}" class="center" style="">
+                <button class="btn btn-success" style="text-align: center;" data-toggle="tooltip" data-placement="top" title="Payer">
+                    <i class="fa-regular fa-credit-card fa-4x"></i>
+                </button>
+            </a>
+        </article>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/revue.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://kit.fontawesome.com/37c5a17803.js" crossorigin="anonymous"></script>
+{% endblock %}

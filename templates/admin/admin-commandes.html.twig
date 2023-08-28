@@ -1,0 +1,68 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto">
+
+        <div class="col-2 mx-auto">
+            <article>
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-primary btn-admin-med">Catégories</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-primary btn-admin-med">Nouveau Produit</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-primary btn-admin-med">Produits</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-info btn-admin-med">Commandes</button>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-10 mx-auto">
+            <article style="text-align:center; margin:auto;">
+                <table class="table table-light table-striped table-hover table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col"># Commande</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Prix Total</th>
+                            <th scope="col">État</th>
+                            <th scope="col">Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for commande in commandes %}
+                            <tr>
+                                <th scope="row">{{commande.idCommande}}</th>
+                                <th scope="row">{{commande.dateCommande|date}}</th>
+                                <th scope="row">{{commande.calculerPrixTotal()|number_format(2)}}</th>
+                                <th scope="row">{{commande.etat}}</th>
+                                <th scope="row"><a href="{{path('app_admin_commande_details', { idCommande:commande.idCommande}) }}" class="link-primary" title="Voir"><i class="fa-sharp fa-solid fa-box fa-lg"></i></a></a></th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </article>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

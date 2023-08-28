@@ -1,0 +1,67 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <body class="container">
+            <article class="row center" style="margin-top: 10px;">
+                <div class="card card-info col-3 container">
+                    <p>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960"><path d="M480.089 566Q509 566 529.5 545.411q20.5-20.588 20.5-49.5Q550 467 529.411 446.5q-20.588-20.5-49.5-20.5Q451 426 430.5 446.589q-20.5 20.588-20.5 49.5Q410 525 430.589 545.5q20.588 20.5 49.5 20.5ZM480 897q133-121 196.5-219.5T740 504q0-117.79-75.292-192.895Q589.417 236 480 236t-184.708 75.105Q220 386.21 220 504q0 75 65 173.5T480 897Zm0 79Q319 839 239.5 721.5T160 504q0-150 96.5-239T480 176q127 0 223.5 89T800 504q0 100-79.5 217.5T480 976Zm0-472Z"/></svg>
+                    </p>
+                    <h2 class="card-title">Adresse</h2>
+                    <h4>455 Rue Fournier, Saint-Jérôme, QC J7Z 4V2</h4>
+                </div>
+
+                <div class="card card-info col-3">
+                    <p>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 1050"><path d="M260 1016q-24 0-42-18t-18-42V196q0-24 18-42t42-18h440q24 0 42 18t18 42v760q0 24-18 42t-42 18H260Zm0-90v30h440v-30H260Zm0-60h440V286H260v580Zm0-640h440v-30H260v30Zm0 0v-30 30Zm0 700v30-30Z"/></svg>
+                    </p>
+                    <h2 class="card-title">Numéro du centre d’appels</h2>
+                    <h4>(450) 436-1580</h4>
+                </div>
+
+                <div class="card card-info col-3">
+                    <p>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 1050"><path d="M480 976q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576v53q0 56-39.5 94.5T744 762q-36 0-68-17.5T627 695q-26 34-65 50.5T480 762q-78 0-132.5-54T293 576q0-78 54.5-133T480 388q78 0 132.5 55T667 576v53q0 31 22.5 52t54.5 21q31 0 53.5-21t22.5-52v-53q0-142-99-241t-241-99q-142 0-241 99t-99 241q0 142 99 241t241 99h214v60H480Zm0-274q53 0 90-36.5t37-89.5q0-54-37-91t-90-37q-53 0-90 37t-37 91q0 53 37 89.5t90 36.5Z"/></svg>
+                    </p>
+                    <h2 class="card-title">Soutien électronique</h2>
+                    <h4>DragonsKeep@gmail.com</h4>
+                </div>
+            </article>
+
+            <article class="row center" style="margin-top: 10px;">
+                <div class="card card-info col-6">
+                    <p>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 1050"><path d="M479 936 189 777V537L40 456l439-240 441 240v317h-60V491l-91 46v240L479 936Zm0-308 315-172-315-169-313 169 313 172Zm0 240 230-127V573L479 696 249 571v170l230 127Zm1-240Zm-1 74Zm0 0Z"/></svg>
+                    </p>
+
+                    <h2 class="card-title">Sources des images</h2>
+                    <h4>
+                        <ul><a href="https://www.pexels.com">pexels.com</a></ul>
+                        <ul><a href="https://fonts.google.com/icons">fonts.google.com/icons</a></ul>
+                        <ul><a href="https://fontawesome.com">fontawesome.com</a></ul>
+                    </h4> 
+                </div>
+
+                <div class="card card-info col-6">
+                    <p>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 1050"><path d="M479 936 189 777V537L40 456l439-240 441 240v317h-60V491l-91 46v240L479 936Zm0-308 315-172-315-169-313 169 313 172Zm0 240 230-127V573L479 696 249 571v170l230 127Zm1-240Zm-1 74Zm0 0Z"/></svg>
+                    </p>
+
+                    <h2 class="card-title">Ceci est un site pédagogique</h2>
+
+                    <p>
+                        Il n'est malheureusement pas possible d'acheter des produits sur ce site.
+                        Le email DragonsKeep@gmail.com est fictif. Il est inutile d'envoyer des messages à cette adresse électronique.
+                        L'adresse physique du bâtiment est celle du Cégep de Saint-Jérôme.
+                    </p>
+                </div>
+            </article>
+    </body>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/contacts.css') }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}

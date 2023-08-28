@@ -1,0 +1,17 @@
+body {
+    background-image: url("../images/panier-bg.jpeg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 1920px 1080px;
+    width: 1920px;
+}
+
+.txt-sommaire {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.txt-achat {
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,156 @@
+{% extends 'core/base.html.twig' %}
+{% form_theme infos 'bootstrap_5_layout.html.twig' %}
+{% block content %}
+
+	{# POUR LES NOTIFICATIONS #}
+        <div class="row" style="text-align:center; margin-left: auto; margin-right: auto; margin-top:-45px; margin-bottom:45px;">
+            {% for flash in app.flashes('notification') %}
+                <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+            {% endfor %}
+        </div>
+
+    <div class="row">
+
+		<div class="col-12" style="margin-top:-45px;">
+			<div class="row">
+				<article class="col-3">
+					<img style="margin-bottom: 15px;" src="https://ui-avatars.com/api/?name={{ client.prenom }}+{{ client.nom }}&rounded=true&background=random" alt="">
+					<a class="deconnection" href="{{ path('app_deconnexion') }}">Se déconnecter</a>
+				</article>
+			</div>
+		</div>
+    	
+        <div class="col-7">
+
+			{# Informations du client #}
+			<div class="row center div-formulaire" style="background-color: #6985f5; width:700px; border-radius: 30px; padding-top:15px; padding-bottom:10px;">
+
+				<h1 class="div-inscription center">Informations</h1>
+
+				{{ form_start(infos, {'attr': {'class': 'needs-validation-register', 'novalidate': 'novalidate' }}) }}
+			
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Courriel:</span>
+					</div>
+					{{ form_row(infos.courriel) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Nom:</span>
+					</div>
+					{{ form_row(infos.nom) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Prenom:</span>
+					</div>
+					{{ form_row(infos.prenom) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Adresse:</span>
+					</div>
+					{{ form_row(infos.adresse) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Ville:</span>
+					</div>
+					{{ form_row(infos.ville) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Code Postal:</span>
+					</div>
+					{{ form_row(infos.codePostal) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<label class="input-group-text center">Province</label>
+					</div>
+					{{ form_row(infos.province) }}
+				</div>
+
+				<div class="input-group div-inscription center">
+					<div class="input-group-prepend nom-input">
+						<span class="input-group-text center">Telephone:</span>
+					</div>
+					{{ form_row(infos.telephone) }}
+				</div>
+				
+				<div class="btn-inscription">
+					{{ form_row(infos.create) }}
+				</div>
+
+				{{ form_end(infos) }}
+
+        	</div>
+
+			
+		</div>
+
+		
+        <div class="col-5" style="margin-top:auto; margin-bottom:auto;">
+			{# Acces aux commandes #}
+			<div class="center"style="background-color: #6985f5; width:700px; height:130px; border-radius: 30px; padding-top:15px; margin-bottom:15px;">
+				<h1 class="div-inscription center">Commandes</h1>
+				<button class="btn btn-primary">
+					<a href="{{ path('app_commandes')}}">Mes commandes</a>
+				</button>
+			</div>
+
+			{# Modification du mot de passe #}
+			<div class="row center div-formulaire" style="background-color: #6985f5; width:700px; border-radius: 30px; padding-top:15px;">
+
+                <h1 class="div-inscription center">Changer mot de passe</h1>
+                
+                {{ form_start(mdp, {'attr': {'class': 'needs-validation-register', 'novalidate': 'novalidate' }}) }}
+
+					
+					<div class="input-group div-inscription center">
+						<div class="input-group-prepend nom-input">
+							<span class="input-group-text center">Mot De Passe Actuel:</span>
+						</div>
+						{{ form_row(mdp.password) }}
+					</div>
+					
+
+					<div class="input-group div-inscription center">
+						<div class="input-group-prepend nom-input">
+							<span class="input-group-text center">Nouveau Mot De Passe:</span>
+						</div>
+						{{ form_row(mdp.motDePasse.first) }}
+					</div>
+
+					<div class="input-group div-inscription center">
+						<div class="input-group-prepend nom-input">
+							<span class="input-group-text center">Confirmation Mot De Passe:</span>
+						</div>
+						{{ form_row(mdp.motDePasse.second) }}
+					</div>
+
+				{{ form_end(mdp) }}
+
+            </div>
+        </div>
+        
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/profil.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+	<script defer src="{{ asset('scripts/register.js')}}"></script>
+{% endblock %}

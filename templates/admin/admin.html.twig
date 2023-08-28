@@ -1,0 +1,39 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto" style="margin-top: 230px;">
+
+            <article class="col-3">
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-primary btn-admin">Catégories</button>
+                </a>
+            </article>
+            
+            <article class="col-3">
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-primary btn-admin">Nouveau Produit</button>
+                </a>
+            </article>
+
+            <article class="col-3">
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-primary btn-admin">Produits</button>
+                </a>
+            </article>
+
+            <article class="col-3">
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-primary btn-admin">Commandes</button>
+                </a>
+            </article>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

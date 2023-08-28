@@ -1,0 +1,99 @@
+{% extends 'core/base.html.twig' %}
+{% form_theme formulaire 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto">
+
+        {# POUR LES NOTIFICATIONS #}
+        <div class="row" style="text-align:center; margin-left: auto; margin-right: auto; margin-top:-45px; margin-bottom:45px;">
+            {% for flash in app.flashes('notification-nouveau') %}
+                <div class="alert {{ flash.color }}">{{ flash.content }}</div>
+            {% endfor %}
+        </div>
+
+        {# Menu #}
+        <div class="col-2 mx-auto">
+            <article>
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-primary btn-admin-med">Catégories</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-info btn-admin-med">Nouveau Produit</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-primary btn-admin-med">Produits</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-primary btn-admin-med">Commandes</button>
+                </a>
+            </article>
+        </div>
+
+        {# Formulaire produit #}
+        <div class="col-10 mx-auto">
+            <article class="center" style="background-color: #a8f0c3; border-radius: 30px; padding-top:15px; padding-bottom:10px;">
+                {{ form_start(formulaire, {'attr': {'class': 'needs-validation-register', 'novalidate': 'novalidate' }}) }}
+
+                    <div class="input-group center div-nouveau">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text center titre-input-n-produit">Nom</span>
+                        </div>
+                        {{ form_row(formulaire.nom) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        {{ form_row(formulaire.prix) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text center titre-input-n-produit">Stock</span>
+                        </div>
+                        {{ form_row(formulaire.quantiteEnStock) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text center titre-input-n-produit">Categorie</span>
+                        </div>
+                        {{ form_row(formulaire.categorie) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text center titre-input-n-produit">Description</span>
+                        </div>
+                        {{ form_row(formulaire.description) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        {{ form_row(formulaire.imagePath) }}
+                    </div>
+
+                    <div class="input-group center div-nouveau">
+                        {{ form_row(formulaire.ajout) }}
+                    </div>
+                {{ form_end(formulaire) }}
+            </article>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+	<script defer src="{{ asset('scripts/validateur.js')}}"></script>
+{% endblock %}

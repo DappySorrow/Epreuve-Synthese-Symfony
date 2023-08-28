@@ -1,0 +1,30 @@
+<div class="modal-body container" style="width: 800px;">
+	<article class="row" style="color: white;">
+
+		<h1 class="modal-title" style="vertical-align:center; color:white; margin: auto; text-align:">{{ produit.nom }}</h1>
+
+		<hr style="width: 470px; margin-left:auto; margin-right:auto;">
+
+		<!-- ##################################### -->
+
+		<p><img src="{{asset_if(produit.imagePath, 'images/produits/non-disponible.svg')}}" alt="image" class="mx-auto d-block img-produit"></p>
+
+		<p style="font-size: 30px;">Prix: {{produit.prix |number_format|number_format(2)}}$</p>
+
+		<hr style="width: 470px; margin-left:auto; margin-right:auto;">
+
+		<p class="col-12" style="margin-left:auto; margin-right:auto;">{{produit.description}}</p>
+			
+		<hr style="width: 470px; margin-left:auto; margin-right:auto;">
+
+		<span class="row">
+			<p class="col-6" style="font-size: 25px;">Catégorie: {{produit.categorie.categorie}}</p>
+			<p class="col-6" style="font-size: 25px;">En inventaire: {{produit.quantiteEnStock}}</p>
+		</span>
+
+		<!-- ##################################### -->
+			
+		<button type="button" style="margin-left:auto; margin-right:auto;" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+		
+	</article>
+</div>

@@ -1,0 +1,65 @@
+{% extends 'core/base.html.twig' %}
+
+{% block content %}
+    <div class="row mx-auto">
+
+        <div class="col-2 mx-auto">
+            <article>
+                <a href="{{ path('app_admin_categories')}}">
+                    <button class="btn btn-primary btn-admin-med">Catégories</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_nouveau')}}">
+                    <button class="btn btn-primary btn-admin-med">Nouveau Produit</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_produits')}}">
+                    <button class="btn btn-info btn-admin-med">Produits</button>
+                </a>
+            </article>
+            <hr>
+            <article>
+                <a href="{{ path('app_admin_commandes')}}">
+                    <button class="btn btn-primary btn-admin-med">Commandes</button>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-10 mx-auto">
+            <article style="text-align:center; margin:auto;">
+                <table class="table table-light table-striped table-hover table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col"># Produit</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix Unitaire</th>
+                            <th scope="col">Categorie</th>
+                            <th scope="col">Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in produits %}
+                            <tr>
+                                <th scope="row">{{produit.idProduit}}</th>
+                                <th scope="row">{{produit.nom}}</th>
+                                <th scope="row">{{produit.prix}}$</th>
+                                <th scope="row">{{produit.categorie.categorie}}</th>
+                                <th scope="row"><a href="{{path('app_admin_produit_details', { idProduit:produit.idProduit}) }}" class="link-primary" title="Modifier"><i class="fa-solid fa-screwdriver-wrench fa-lg"></i></a></th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </article>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Julee&display=swap" rel="stylesheet">
+{% endblock %}
