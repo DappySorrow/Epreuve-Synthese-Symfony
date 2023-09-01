@@ -1,5 +1,7 @@
 https://4d6.1446326.techinfo-cstj.ca
 
+Ceci est le projet synthèse final du cours Développement Web. Le projet utlise le framework Symfony.
+
 ![image](https://github.com/DappySorrow/Epreuve-Synthese-Symfony/assets/77983915/af3203c9-72b1-4538-9fc7-639ed3fcfc47)
 
 ![image](https://github.com/DappySorrow/Epreuve-Synthese-Symfony/assets/77983915/f480dfe6-a76d-42de-a9c1-bde879f73015)
